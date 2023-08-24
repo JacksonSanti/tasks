@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.devmasterteam.tasks.service.constants.TaskConstants
+import com.devmasterteam.tasks.service.helper.BiometricHelper
 import com.devmasterteam.tasks.service.listener.APIListener
 import com.devmasterteam.tasks.service.model.PersonModel
 import com.devmasterteam.tasks.service.model.PriorityModel
@@ -60,7 +61,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
      * Verifica se usuário está logado
      */
     @RequiresApi(Build.VERSION_CODES.M)
-    fun verifyLoggedUser() {
+    fun verifyAuthentication() {
        var token = securityPreferences.get(TaskConstants.SHARED.TOKEN_KEY)
        var person = securityPreferences.get(TaskConstants.SHARED.PERSON_NAME)
 
@@ -68,7 +69,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
         var logged = (token != "" && person != "")
 
-        _loggedUser.value = logged
 
         if (!logged) {
             priorityRepository.list(object : APIListener<List<PriorityModel>>{
@@ -82,6 +82,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
             })
         }
+
+        _loggedUser.value = (logged && BiometricHelper.isBiometricAvailable(getApplication()))
+
 
     }
 

@@ -5,25 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/shape_background"
     tools:context=".view.LoginActivity">
 
+    <ImageView
+        android:id="@+id/image_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_logotipo"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content" />
+    
+    
     <EditText
+        style="@style/EditTextWhite"
         android:id="@+id/edit_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:hint="@string/email"
+        android:drawableStart="@drawable/ic_mail"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/image_logo" />
 
     <EditText
+        style="@style/EditTextWhite"
         android:id="@+id/edit_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/senha"
+        android:drawableStart="@drawable/ic_lock"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +47,7 @@
 
     <Button
         android:id="@+id/button_login"
+        style="@style/DefaultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -42,6 +59,7 @@
 
     <TextView
         android:id="@+id/text_new_account"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nao_tem_uma_conta"
@@ -52,6 +70,7 @@
 
     <TextView
         android:id="@+id/text_register"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
